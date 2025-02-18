@@ -1,0 +1,31 @@
+on:
+  push:
+    paths:
+      - "./api/**"
+      - ".github/workflows/api-ci.yml"
+
+defaults:
+  run:
+    working-directory: ./api
+
+jobs:
+  unit-test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Setup Nodejs
+        uses: actions/setup-node@v2
+        with:
+          node-version: '22' # Especifica la versión de Node.js
+          cache: 'npm'
+          cache-dependencies-paths: ./api/package-lock.json
+
+      - name: Install 
+        shell: bash
+        run: npm ci # O yarn install
+
+      - name: Run tests
+        shell: bash
+        run: npm run test # O yarn test
