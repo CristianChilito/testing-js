@@ -20,7 +20,7 @@ jobs:
         with:
           node-version: '22' # Especifica la versión de Node.js
           cache: 'npm'
-          cache-dependencies-paths: ./api/package-lock.json
+          cache-dependencies-paths: './api/package-lock.json'
 
       - name: Install 
         shell: bash
